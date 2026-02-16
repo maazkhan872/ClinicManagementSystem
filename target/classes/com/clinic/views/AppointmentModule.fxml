@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20" styleClass="main-content" xmlns="http://javafx.com/javafx/8.0.171" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.clinic.controllers.AppointmentController">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 20 20 0 20;">
+        <VBox>
+            <Text text="Appointment Scheduling" styleClass="welcome-text"/>
+            <Text text="Manage patient visits and doctor availability" styleClass="subtitle-text"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ New Appointment" onAction="#switchToFormTab" styleClass="btn-primary"/>
+    </HBox>
+
+    <!-- TabPane -->
+    <TabPane fx:id="appointmentTabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="custom-tab-pane">
+
+        <!-- ===== LIST VIEW TAB ===== -->
+        <Tab fx:id="tabListView" text="📅 Appointment List">
+            <VBox spacing="15" style="-fx-padding: 20;">
+                <!-- Filters -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <DatePicker fx:id="dateFilter" promptText="Filter by Date" onAction="#filterByDate"/>
+                    <ComboBox fx:id="comboStatusFilter" promptText="All Statuses" prefWidth="150"/>
+                    <Button text="Filter" onAction="#applyFilters" styleClass="btn-secondary"/>
+                </HBox>
+
+                <!-- Appointment Table -->
+                <TableView fx:id="appointmentTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colTime" text="Time" prefWidth="100"/>
+                        <TableColumn fx:id="colPatient" text="Patient Name" prefWidth="200"/>
+                        <TableColumn fx:id="colDoctor" text="Doctor" prefWidth="150"/>
+                        <TableColumn fx:id="colReason" text="Reason/Symptom" prefWidth="250"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- ===== FORM VIEW TAB ===== -->
+        <Tab fx:id="tabFormView" text="📝 Schedule New">
+            <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 40;">
+                <GridPane hgap="30" vgap="20" alignment="CENTER" maxWidth="800">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="30"/>
+                        <ColumnConstraints percentWidth="70"/>
+                    </columnConstraints>
+
+                    <!-- Patient -->
+                    <Label text="Select Patient:" GridPane.rowIndex="0" styleClass="field-label"/>
+                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <ComboBox fx:id="comboPatient" promptText="Search Patient..." HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+
+                    <!-- Doctor -->
+                    <Label text="Assign Doctor:" GridPane.rowIndex="1" styleClass="field-label"/>
+                    <ComboBox fx:id="comboDoctor" promptText="Select Specialist" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity"/>
+
+                    <!-- Date -->
+                    <Label text="Appointment Date:" GridPane.rowIndex="2" styleClass="field-label"/>
+                    <DatePicker fx:id="pickDate" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity"/>
+
+                    <!-- Time Slot -->
+                    <Label text="Time Slot:" GridPane.rowIndex="3" styleClass="field-label"/>
+                    <ComboBox fx:id="comboTimeSlot" promptText="Select Available Slot" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
+
+                    <!-- Reason -->
+                    <Label text="Reason for Visit:" GridPane.rowIndex="4" styleClass="field-label"/>
+                    <TextArea fx:id="txtReason" promptText="Briefly describe the issue..." prefHeight="100" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                </GridPane>
+
+                <!-- Form Buttons -->
+                <HBox spacing="20" alignment="CENTER">
+                    <Button text="Reset Form" onAction="#resetForm" styleClass="btn-secondary" prefWidth="150"/>
+                    <Button text="Confirm Appointment" onAction="#handleSchedule" styleClass="btn-primary" prefWidth="200"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

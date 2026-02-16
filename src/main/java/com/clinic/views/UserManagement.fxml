@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20" styleClass="main-content" xmlns="http://javafx.com/javafx/8.0.171" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.clinic.controllers.UserController">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <VBox spacing="5">
+        <Text text="User &amp; Staff Management" styleClass="welcome-text" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Text text="Register new doctors, receptionists, or admins" styleClass="subtitle-text"/>
+    </VBox>
+
+    <HBox spacing="30" VBox.vgrow="ALWAYS">
+        <VBox spacing="15" prefWidth="400" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <Text text="Add New User" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            
+            <Label text="Username:"/>
+            <TextField fx:id="txtNewUsername" promptText="Enter username"/>
+
+            <Label text="Email:"/>
+            <TextField fx:id="txtEmail" promptText="example@clinic.com"/>
+
+            <Label text="Assign Role:"/>
+            <ComboBox fx:id="comboRole" promptText="Select Role" maxWidth="Infinity"/>
+
+            <Label text="Default Password:"/>
+            <TextField text="default123" editable="false" style="-fx-background-color: #f4f4f4;"/>
+
+            <Region VBox.vgrow="ALWAYS" />
+            <Button text="Register Staff Member" onAction="#handleRegisterUser" 
+                    maxWidth="Infinity" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-padding: 10;"/>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+             <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colUserId" text="ID" prefWidth="50" />
+                    <TableColumn fx:id="colUserName" text="Username" prefWidth="150" />
+                    <TableColumn fx:id="colUserRole" text="Role ID" prefWidth="100" />
+                    <TableColumn fx:id="colUserEmail" text="Email" prefWidth="200" />
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+</VBox>

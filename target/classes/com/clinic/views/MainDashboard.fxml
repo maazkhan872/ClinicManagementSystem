@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+
+
+
+<BorderPane fx:id="mainLayout" prefHeight="700.0" prefWidth="1100.0" 
+            stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.clinic.controllers.DashboardController">
+    
+    <left>
+        <VBox prefWidth="250.0" styleClass="sidebar" spacing="10">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+
+            <VBox alignment="CENTER" spacing="10" styleClass="profile-section">
+                <Circle fx:id="userImage" fill="DODGERBLUE" radius="35.0" stroke="WHITE" strokeType="INSIDE" />
+                <Text fx:id="txtUsername" text="Dr. Maaz Khan" styleClass="sidebar-user-name"/>
+                <Text fx:id="txtRole" text="Administrator" styleClass="sidebar-user-role"/>
+            </VBox>
+            
+            <Separator style="-fx-padding: 10 0 10 0;"/>
+
+            <Button fx:id="btnHome" maxWidth="Infinity" onAction="#showHome" styleClass="sidebar-btn" text="📊 Dashboard" />
+            <Button fx:id="btnPatients" maxWidth="Infinity" onAction="#showPatients" styleClass="sidebar-btn" text="👥 Patients" />
+            <Button fx:id="btnAppointments" maxWidth="Infinity" onAction="#showAppointments" styleClass="sidebar-btn" text="📅 Appointments" />
+            <Button fx:id="btnPrescriptions" maxWidth="Infinity" onAction="#showPrescriptions" styleClass="sidebar-btn" text="💊 Prescriptions" />
+            <Button fx:id="btnBilling" maxWidth="Infinity" onAction="#showBilling" styleClass="sidebar-btn" text="💳 Billing &amp; Invoices" />
+            
+           <Pane VBox.vgrow="ALWAYS" />
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS">
+            <children>
+                <VBox alignment="CENTER" spacing="20">
+                    <Text text="Welcome to Clinic Management System" styleClass="welcome-text"/>
+                    <Text text="Select an option from the sidebar to get started." styleClass="subtitle-text"/>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+    
+</BorderPane>

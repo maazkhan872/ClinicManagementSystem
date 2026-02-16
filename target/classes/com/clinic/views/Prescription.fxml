@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="15" styleClass="main-content" xmlns="http://javafx.com/javafx/8.0.171" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.clinic.controllers.PrescriptionController">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Text text="Create Medical Prescription" styleClass="welcome-text" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <SplitPane dividerPositions="0.35" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+        
+        <VBox spacing="15" style="-fx-padding: 0 10 0 0;">
+            <TitledPane text="Patient &amp; Diagnosis" collapsible="false">
+                <VBox spacing="10">
+                    <Label text="Select Patient" styleClass="field-label"/>
+                    <ComboBox fx:id="comboPatient" promptText="Choose Patient" maxWidth="Infinity"/>
+                    
+                    <Label text="Symptoms" styleClass="field-label" style="-fx-padding: 10 0 0 0;"/>
+                    <TextArea fx:id="txtSymptoms" promptText="Enter symptoms..." prefHeight="100" wrapText="true"/>
+                    
+                    <Label text="Diagnosis" styleClass="field-label" style="-fx-padding: 10 0 0 0;"/>
+                    <TextArea fx:id="txtDiagnosis" promptText="Final diagnosis..." prefHeight="100" wrapText="true"/>
+                </VBox>
+            </TitledPane>
+        </VBox>
+
+        <VBox spacing="15" style="-fx-padding: 0 0 0 10;">
+            <TitledPane text="Medication Details" collapsible="false">
+                <HBox spacing="10" alignment="BOTTOM_LEFT">
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Label text="Medicine" styleClass="field-label"/>
+                        <ComboBox fx:id="comboMedicine" promptText="Select Medicine" maxWidth="Infinity"/>
+                    </VBox>
+                    <VBox prefWidth="80">
+                        <Label text="Qty" styleClass="field-label"/>
+                        <TextField fx:id="txtQty" promptText="Qty"/>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS">
+                        <Label text="Dosage Instruction" styleClass="field-label"/>
+                        <TextField fx:id="txtDosage" promptText="e.g. 1-0-1 After meal"/>
+                    </VBox>
+                    <Button text="Add" onAction="#addMedicineToList" 
+                            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="80"/>
+                </HBox>
+            </TitledPane>
+
+            <TableView fx:id="tableItems" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colMedicine" text="Medicine ID/Name" prefWidth="150"/>
+                    <TableColumn fx:id="colQty" text="Qty" prefWidth="80"/>
+                    <TableColumn fx:id="colDosage" text="Dosage Instruction" prefWidth="250"/>
+                </columns>
+                <placeholder>
+                    <Label text="No medicines added yet."/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Reset Form" onAction="#clearAll" 
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white;" prefWidth="120"/>
+                <Button text="💾 Save &amp; Print Prescription" onAction="#handleSavePrescription" 
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" prefWidth="250"/>
+            </HBox>
+        </VBox>
+
+    </SplitPane>
+</VBox>

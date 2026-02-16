@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="20" styleClass="main-content" xmlns="http://javafx.com/javafx/8.0.171" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.clinic.controllers.BillingController">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT">
+        <VBox>
+            <Text text="Billing &amp; Invoices" styleClass="welcome-text"/>
+            <Text text="Generate and manage patient payments" styleClass="subtitle-text"/>
+        </VBox>
+    </HBox>
+
+    <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+        <VBox spacing="10">
+            <HBox spacing="15" alignment="CENTER_LEFT" styleClass="form-container">
+                <ComboBox fx:id="comboPatient" promptText="Select Patient" prefWidth="250"/>
+                <Button text="Load Pending Bills" onAction="#loadPatientData" styleClass="btn-secondary"/>
+            </HBox>
+
+            <TableView fx:id="billingTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colItem" text="Service / Medicine" prefWidth="300"/>
+                    <TableColumn fx:id="colQty" text="Qty" prefWidth="100"/>
+                    <TableColumn fx:id="colPrice" text="Unit Price" prefWidth="120"/>
+                    <TableColumn fx:id="colTotal" text="Subtotal" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox spacing="20" styleClass="side-form" prefWidth="300">
+            <Text text="Invoice Summary" styleClass="form-title"/>
+            
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 5;">
+                <HBox>
+                    <Label text="Subtotal:" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Text fx:id="txtSubtotal" text="0.00"/>
+                </HBox>
+                <HBox>
+                    <Label text="Tax (5%):" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Text fx:id="txtTax" text="0.00"/>
+                </HBox>
+                <Separator/>
+                <HBox>
+                    <Label text="GRAND TOTAL:" style="-fx-font-weight: bold;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Text fx:id="txtGrandTotal" text="0.00" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-fill: #27ae60;"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Payment Method" styleClass="field-label"/>
+                <ComboBox fx:id="comboPaymentMethod" promptText="Select Method" maxWidth="Infinity"/>
+                
+                <Button text="Generate Invoice" onAction="#handleGenerateInvoice" 
+                        maxWidth="Infinity" styleClass="btn-primary" prefHeight="50"/>
+                <Button text="Print Receipt" onAction="#handlePrint" 
+                        maxWidth="Infinity" styleClass="btn-secondary"/>
+            </VBox>
+        </VBox>
+    </SplitPane>
+</VBox>

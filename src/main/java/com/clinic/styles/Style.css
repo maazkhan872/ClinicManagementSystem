@@ -1,0 +1,226 @@
+/* Main Container Styling */
+.login-container {
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #eef2f3);
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* Header Section */
+.title-text {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50; /* Dark Blue-Grey */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.subtitle-text {
+    -fx-font-size: 14px;
+    -fx-fill: #95a5a6; /* Soft Grey */
+}
+
+/* Form Fields Styling */
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+.text-field, .password-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-transition: 0.3s;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #3498db; /* Primary Blue */
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.2), 10, 0, 0, 0);
+}
+
+/* Buttons Styling */
+.btn-primary {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #2980b9;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.btn-primary:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-text-fill: #7f8c8d;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #f5f6fa;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Error Message */
+.error-text {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    -fx-background-color: #2c3e50; /* Dark Navy */
+}
+
+.profile-section {
+    -fx-padding: 10;
+}
+
+.sidebar-user-name {
+    -fx-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.sidebar-user-role {
+    -fx-fill: #bdc3c7;
+    -fx-font-size: 12px;
+}
+
+/* Sidebar Buttons */
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ecf0f1;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 15;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: #34495e;
+    -fx-text-fill: #3498db;
+}
+
+.sidebar-btn-logout {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.sidebar-btn-logout:hover {
+    -fx-background-color: #e74c3c;
+}
+
+/* Main Content Area */
+.main-content {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30;
+}
+
+.welcome-text {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-fill: #2c3e50;
+}
+
+/* TabPane Styling */
+.custom-tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.custom-tab-pane .tab {
+    -fx-background-color: #f1f2f6;
+    -fx-background-radius: 5 5 0 0;
+    -fx-padding: 10 20;
+}
+
+.custom-tab-pane .tab:selected {
+    -fx-background-color: #3498db;
+}
+
+.custom-tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: #f1f2f6;
+}
+
+/* Appointment Status Colors */
+.status-confirmed {
+    -fx-text-fill: #27ae60;
+    -fx-font-weight: bold;
+}
+
+.status-pending {
+    -fx-text-fill: #f39c12;
+    -fx-font-weight: bold;
+}
+
+.status-cancelled {
+    -fx-text-fill: #c0392b;
+    -fx-font-weight: bold;
+}
+
+/* DatePicker Styling */
+.date-picker .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+}
+
+.date-picker .button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.titled-pane {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdde1;
+}
+
+/* Green Save Button */
+.btn-save-prescription {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+
+.btn-save-prescription:hover {
+    -fx-background-color: #219150;
+}
+

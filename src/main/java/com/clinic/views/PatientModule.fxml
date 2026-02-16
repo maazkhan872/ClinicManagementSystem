@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="15"
+      xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.clinic.controllers.PatientController">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Text text="Patient Registration"
+          style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- Form Section -->
+    <GridPane hgap="15" vgap="15">
+
+        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtName"
+                   promptText="Enter Patient Name"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="1"/>
+
+        <Label text="Age:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAge"
+                   promptText="Enter Age"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="1"/>
+
+        <Label text="Gender:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboGender"
+                  promptText="Select Gender"
+                  GridPane.rowIndex="2"
+                  GridPane.columnIndex="1"/>
+
+        <Label text="Phone:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtPhone"
+                   promptText="Enter Phone Number"
+                   GridPane.rowIndex="3"
+                   GridPane.columnIndex="1"/>
+
+        <Label text="Address:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtAddress"
+                  promptText="Enter Address"
+                  prefHeight="80"
+                  GridPane.rowIndex="4"
+                  GridPane.columnIndex="1"/>
+
+        <Label text="Date of Birth:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="pickDOB"
+                    promptText="Select DOB"
+                    GridPane.rowIndex="5"
+                    GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Buttons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button text="Clear"
+                onAction="#clearFields"
+                prefWidth="100"/>
+        <Button text="Save Patient"
+                onAction="#handleSavePatient"
+                prefWidth="150"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+    </HBox>
+
+    <!-- Table Section -->
+    <TableView fx:id="patientTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="colPhone" text="Phone" prefWidth="200"/>
+        </columns>
+    </TableView>
+
+</VBox>
