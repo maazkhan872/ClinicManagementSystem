@@ -485,6 +485,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import com.clinic.dao.PrescriptionDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class PrescriptionController {
 
@@ -534,6 +538,8 @@ public class PrescriptionController {
         tableItems.setItems(medicineList);
     }
 
+    
+    
     @FXML
     private void addMedicineToList() {
         if (comboMedicine.getValue() == null || txtQty.getText().isEmpty()) {
@@ -553,7 +559,7 @@ public class PrescriptionController {
         txtDosage.clear();
     }
 
-    @FXML
+  /* @FXML
     private void handleSavePrescription() {
         if (comboPatient.getValue() == null) {
             showAlert("Error", "Select a patient");
@@ -562,7 +568,87 @@ public class PrescriptionController {
         // Save logic to DB (optional, connect to PrescriptionDAO)
         showAlert("Saved", "Prescription saved successfully");
         clearAll();
+    }*/
+    
+    @FXML
+    private void handleSavePrescription() {
+
+        if (comboPatient.getValue() == null) {
+            showAlert("Error", "Select patient");
+            return;
+        }
+
+        if (medicineList.isEmpty()) {
+            showAlert("Error", "Add at least one medicine");
+            return;
+        }
+
+        try {
+
+            // Example: patientId extract (you must adjust based on your comboPatient format)
+            int patientId = getPatientIdByName(comboPatient.getValue());
+
+            int doctorId = 1; // static for now (later from login)
+
+            String symptoms = txtSymptoms.getText();
+            String diagnosis = txtDiagnosis.getText();
+
+            PrescriptionDAO dao = new PrescriptionDAO();
+
+            // Step 1: save prescription
+            int prescriptionId = dao.savePrescription(
+                    patientId,
+                    doctorId,
+                    symptoms,
+                    diagnosis
+            );
+
+            if (prescriptionId == -1) {
+                showAlert("Error", "Prescription save failed");
+                return;
+            }
+
+            // Step 2: save items
+            dao.savePrescriptionItems(
+                    prescriptionId,
+                    medicineList
+            );
+
+            showAlert("Success", "Prescription saved to database");
+
+            clearAll();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            showAlert("Error", "Database error: " + e.getMessage());
+        }
     }
+
+    
+    private int getPatientIdByName(String name) throws Exception {
+
+        String sql = "SELECT patient_id FROM patients WHERE name=?";
+
+ //       var conn = com.clinic.connection.DatabaseConnection.getConnection();
+
+//        var ps = conn.prepareStatement(sql);
+        Connection conn = com.clinic.connection.DatabaseConnection.getConnection();
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1, name);
+        ResultSet rs = ps.executeQuery();
+//        var rs = ps.executeQuery();
+
+        if (rs.next())
+            return rs.getInt("patient_id");
+
+        throw new Exception("Patient not found");
+    }
+
+
 
     @FXML
     private void clearAll() {
@@ -582,3 +668,4 @@ public class PrescriptionController {
         alert.showAndWait();
     }
 }
+

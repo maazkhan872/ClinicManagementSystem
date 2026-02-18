@@ -180,7 +180,8 @@ public class PatientDAO {
 
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();
-        String sql = "SELECT * FROM patients";
+        String sql = "SELECT * FROM patients ORDER BY patient_id DESC\r\n"
+        		+ "";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

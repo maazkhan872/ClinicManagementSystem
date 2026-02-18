@@ -41,27 +41,7 @@ public class PrescriptionItemDAO {
         );
     }
 
-   /* public void getItemsForPrescription(int prescriptionId) {
-        // Join medicines table to get the name, not just ID
-        String sql = "SELECT pi.*, m.name FROM prescription_items pi " +
-                     "JOIN medicines m ON pi.medicine_id = m.medicine_id " +
-                     "WHERE pi.prescription_id = ?";
-        
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setInt(1, prescriptionId);
-            ResultSet rs = pstmt.executeQuery();
-            
-            while (rs.next()) {
-                System.out.println("Medicine: " + rs.getString("name") + 
-                                   " | Qty: " + rs.getInt("quantity") + 
-                                   " | Dosage: " + rs.getString("dosage"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-        
+  
         public List<PrescriptionItem> getItemsByPrescriptionId(int pId) {
             List<PrescriptionItem> items = new ArrayList<>();
             // Join taake medicine ka naam bhi mil jaye
