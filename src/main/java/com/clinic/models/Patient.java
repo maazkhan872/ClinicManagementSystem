@@ -25,6 +25,11 @@ public class Patient {
         this.dob = dob;
 
     }
+    public int getId() {
+
+        return patientId;
+
+    }
 
     public int getPatientId() { return patientId; }
 
