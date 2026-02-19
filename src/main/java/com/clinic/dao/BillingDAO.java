@@ -203,10 +203,7 @@ public class BillingDAO {
                 "INSERT INTO billing (patient_id, appointment_id, total_amount, payment_status, billing_date) VALUES (?, ?, ?, ?, ?)";
 
         String itemSql =
-                "INSERT INTO billing_items\r\n"
-                + "(bill_id, patient_id, description, amount)\r\n"
-                + "VALUES (?, ?, ?, ?)\r\n"
-                + "";
+                "INSERT INTO billing_items (bill_id, patient_id, description, amount) VALUES (?, ?, ?, ?)";
 
         try {
 
@@ -236,6 +233,7 @@ public class BillingDAO {
 
             }
 
+            // INSERT billing_items
             PreparedStatement itemStmt =
                     conn.prepareStatement(itemSql);
 
@@ -245,10 +243,10 @@ public class BillingDAO {
 
                 itemStmt.setInt(2, b.getPatientId());
 
-          //      itemStmt.setString(
-           //             3,
-         //               item.getItemName()
-             //   );
+                itemStmt.setString(
+                        3,
+                        item.getItemName()
+                );
 
                 itemStmt.setDouble(
                         4,
@@ -260,6 +258,13 @@ public class BillingDAO {
             }
 
             itemStmt.executeBatch();
+
+            conn.commit();
+
+            conn.setAutoCommit(true);
+
+            return true;
+
         }
 
         catch (Exception e) {
@@ -272,7 +277,44 @@ public class BillingDAO {
 
     }
 
-    // LOAD from prescription_items (NOT billing_items)
+
+    public int getLatestAppointmentId(int patientId) {
+
+        String sql =
+                "SELECT appointment_id FROM appointments WHERE patient_id=? ORDER BY appointment_id DESC LIMIT 1";
+
+        try {
+
+            Connection conn =
+                    DatabaseConnection.getConnection();
+
+            PreparedStatement pstmt =
+                    conn.prepareStatement(sql);
+
+            pstmt.setInt(1, patientId);
+
+            ResultSet rs =
+                    pstmt.executeQuery();
+
+            if (rs.next()) {
+
+                return rs.getInt("appointment_id");
+
+            }
+
+        }
+
+        catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return 0;
+
+    }
+
+
     public List<BillingItem> getBillingItemsByPatient(int patientId) {
 
         List<BillingItem> list = new ArrayList<>();
@@ -296,15 +338,11 @@ public class BillingDAO {
             while (rs.next()) {
 
                 list.add(
-
                         new BillingItem(
-
                                 rs.getString("medicine_name"),
                                 rs.getInt("quantity"),
                                 rs.getDouble("price")
-
                         )
-
                 );
 
             }
@@ -322,4 +360,3 @@ public class BillingDAO {
     }
 
 }
-
