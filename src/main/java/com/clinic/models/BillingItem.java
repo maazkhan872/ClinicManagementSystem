@@ -20,6 +20,8 @@ public class BillingItem {
     public IntegerProperty quantityProperty() { return quantity; }
     public DoubleProperty priceProperty() { return price; }
     public DoubleProperty totalProperty() { return total; }
+    
+    public String getItemName() { return itemName.get(); }   // ✅ ADD THIS
 
     public double getTotal() { return total.get(); }
 }
