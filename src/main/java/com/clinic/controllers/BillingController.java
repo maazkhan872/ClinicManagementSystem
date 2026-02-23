@@ -451,7 +451,12 @@ public class BillingController {
         		                LocalDate.now()
         		        );
 
-        boolean saved = billingDAO.generateInvoice(bill);
+        		boolean saved =
+        		        billingDAO.generateInvoice(
+        		                bill,
+        		                billItems
+        		        );
+
         if (saved) {
             showAlert("Invoice Saved Successfully");
         } else {
