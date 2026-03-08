@@ -41,10 +41,9 @@ public class PrescriptionItemDAO {
         );
     }
 
-  
         public List<PrescriptionItem> getItemsByPrescriptionId(int pId) {
             List<PrescriptionItem> items = new ArrayList<>();
-            // Join taake medicine ka naam bhi mil jaye
+
             String sql = "SELECT pi.*, m.name FROM prescription_items pi " +
                          "JOIN medicines m ON pi.medicine_id = m.medicine_id WHERE pi.prescription_id = ?";
             
@@ -57,11 +56,9 @@ public class PrescriptionItemDAO {
                     item.setMedicineId(rs.getInt("medicine_id"));
                     item.setQuantity(rs.getInt("quantity"));
                     item.setDosage(rs.getString("dosage"));
-                    // Agar aapke model mein medicineName field hai to set karein
                     items.add(item);
                 }
             } catch (SQLException e) { e.printStackTrace(); }
             return items;
-        }
-        
-    }
+        }   
+ }

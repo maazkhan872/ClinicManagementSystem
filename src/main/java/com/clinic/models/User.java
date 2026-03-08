@@ -42,7 +42,7 @@ public class User {
 }
 
     public int getRoleId() {
-    return roleId;
+    return roleId; 
 }
 
     public void setRoleId(int roleId) {

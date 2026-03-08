@@ -59,8 +59,6 @@ public class Patient {
 
     public void setDob(LocalDate dob) { this.dob = dob; }
 
-
-    // ✅ VERY IMPORTANT FIX
     @Override
     public String toString() {
 
@@ -68,5 +66,4 @@ public class Patient {
 return name + " (ID: " + patientId + ")";
 
     }
-
 }

@@ -46,7 +46,7 @@ public class MedicineDAO {
     }
     
     public boolean updateStock(int medicineId, int quantityChange) {
-        // Pehle check karein ke enough stock hai ya nahi (agar minus ho raha ho)
+
         String sql = "UPDATE medicines SET stock_quantity = stock_quantity + ? " +
                      "WHERE medicine_id = ? AND (stock_quantity + ? >= 0)";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -58,23 +58,7 @@ public class MedicineDAO {
         } catch (SQLException e) { e.printStackTrace(); return false; }
     }
 
-    // Positive quantity = Stock Add, Negative quantity = Stock Minus
-  /*  public boolean updateStock(int medicineId, int quantityChange) {
-        String sql = "UPDATE medicines SET stock_quantity = stock_quantity + ? WHERE medicine_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setInt(1, quantityChange);
-            pstmt.setInt(2, medicineId);
-            
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }*/
-
-    // Check Low Stock (Real-time Alert Feature)
+    // Check Low Stock 
     public List<Medicine> getLowStockAlert(int threshold) {
         List<Medicine> lowStockList = new ArrayList<>();
         String sql = "SELECT * FROM medicines WHERE stock_quantity <= ?";

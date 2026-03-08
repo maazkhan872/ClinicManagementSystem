@@ -1,4 +1,3 @@
-
 package com.clinic.models;
 
 public class Doctor {
@@ -14,6 +13,6 @@ public class Doctor {
     public String getName() { return name; }
 
     @Override
-    public String toString() { return name; } // so ComboBox shows name
+    public String toString() { return name; } 
 }
 

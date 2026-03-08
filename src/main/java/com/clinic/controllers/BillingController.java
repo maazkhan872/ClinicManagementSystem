@@ -144,7 +144,7 @@ public class BillingController {
 
     @FXML
     private void handlePrint(ActionEvent event) {
-        // Print stub
+        
         System.out.println("Print button clicked!");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

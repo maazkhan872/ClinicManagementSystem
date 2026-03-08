@@ -21,7 +21,7 @@ public class BillingItem {
     public DoubleProperty priceProperty() { return price; }
     public DoubleProperty totalProperty() { return total; }
     
-    public String getItemName() { return itemName.get(); }   // ✅ ADD THIS
+    public String getItemName() { return itemName.get(); }   
 
     public double getTotal() { return total.get(); }
 }

@@ -113,7 +113,7 @@ public class AppointmentController {
         appointmentTabs.getSelectionModel().select(tabFormView);
     }
 
-    // LOAD APPOINTMENTS
+    // Load Appointments
     private void loadAppointments(LocalDate date, String status) {
 
         List<Appointment> data = appointmentDAO.getAllAppointments();
@@ -127,7 +127,7 @@ public class AppointmentController {
         appointmentTable.setItems(FXCollections.observableArrayList(data));
     }
 
-    // FILTER METHODS
+    // Filter Method
     @FXML
     private void filterByDate() {
         LocalDate selectedDate = dateFilter.getValue();

@@ -1,190 +1,3 @@
-/*package com.clinic.dao;
-
-import com.clinic.connection.DatabaseConnection;
-import com.clinic.models.Billing;
-import com.clinic.models.BillingItem;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-public class BillingDAO {
-
-    public boolean generateInvoice(Billing b) {
-
-        String sql =
-                "INSERT INTO billing " +
-                "(patient_id, appointment_id, total_amount, payment_status, billing_date) " +
-                "VALUES (?, ?, ?, ?, ?)";
-
-        try (
-
-                Connection conn =
-                        DatabaseConnection.getConnection();
-
-                PreparedStatement pstmt =
-                        conn.prepareStatement(sql)
-
-        ) {
-
-            pstmt.setInt(
-                    1,
-                    b.getPatientId()
-            );
-
-            pstmt.setInt(
-                    2,
-                    getLatestAppointmentId(
-                            b.getPatientId()
-                    )
-            );
-
-            pstmt.setDouble(
-                    3,
-                    b.getTotalAmount()
-            );
-
-            pstmt.setString(
-                    4,
-                    b.getPaymentStatus()
-            );
-
-            pstmt.setDate(
-                    5,
-                    Date.valueOf(
-                            b.getBillingDate()
-                    )
-            );
-
-            int rows =
-                    pstmt.executeUpdate();
-
-            return rows > 0;
-
-        }
-
-        catch (Exception e) {
-
-            e.printStackTrace();
-
-            return false;
-
-        }
-
-    }
-
-
-    public int getLatestAppointmentId(int patientId) {
-
-        String sql =
-                "SELECT appointment_id FROM appointments " +
-                "WHERE patient_id=? ORDER BY appointment_id DESC LIMIT 1";
-
-        try (
-
-                Connection conn =
-                        DatabaseConnection.getConnection();
-
-                PreparedStatement pstmt =
-                        conn.prepareStatement(sql)
-
-        ) {
-
-            pstmt.setInt(
-                    1,
-                    patientId
-            );
-
-            ResultSet rs =
-                    pstmt.executeQuery();
-
-            if (rs.next())
-
-                return rs.getInt(
-                        "appointment_id"
-                );
-
-        }
-
-        catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        return 0;
-
-    }
-
-
-    public List<BillingItem>
-    getBillingItemsByPatient(int patientId) {
-
-        List<BillingItem> list =
-                new ArrayList<>();
-
-        String sql =
-                "SELECT s.service_name,bi.quantity,bi.unit_price " +
-                "FROM billing_items bi " +
-                "JOIN services s ON s.service_id=bi.service_id " +
-                "WHERE bi.patient_id=?";
-
-        try (
-
-                Connection conn =
-                        DatabaseConnection.getConnection();
-
-                PreparedStatement pstmt =
-                        conn.prepareStatement(sql)
-
-        ) {
-
-            pstmt.setInt(
-                    1,
-                    patientId
-            );
-
-            ResultSet rs =
-                    pstmt.executeQuery();
-
-            while (rs.next()) {
-
-                list.add(
-
-                        new BillingItem(
-
-                                rs.getString(
-                                        "service_name"
-                                ),
-
-                                rs.getInt(
-                                        "quantity"
-                                ),
-
-                                rs.getDouble(
-                                        "unit_price"
-                                )
-
-                        )
-
-                );
-
-            }
-
-        }
-
-        catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        return list;
-
-    }
-
-}*/
-
 package com.clinic.dao;
 
 import com.clinic.connection.DatabaseConnection;
@@ -264,7 +77,6 @@ public class BillingDAO {
             conn.setAutoCommit(true);
 
             return true;
-
         }
 
         catch (Exception e) {
@@ -272,11 +84,8 @@ public class BillingDAO {
             e.printStackTrace();
 
             return false;
-
         }
-
     }
-
 
     public int getLatestAppointmentId(int patientId) {
 
@@ -299,19 +108,14 @@ public class BillingDAO {
             if (rs.next()) {
 
                 return rs.getInt("appointment_id");
-
             }
-
         }
 
         catch (Exception e) {
 
             e.printStackTrace();
-
         }
-
         return 0;
-
     }
 
 
@@ -356,7 +160,5 @@ public class BillingDAO {
         }
 
         return list;
-
     }
-
 }

@@ -50,8 +50,6 @@ public class PrescriptionItem {
                 '}';
     }
 
-    // Overriding equals() and hashCode() 
-    // Important: Java collections (HashSet, ArrayList) use these to compare objects
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
