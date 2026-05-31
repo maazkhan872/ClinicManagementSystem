@@ -52,6 +52,8 @@ This project was developed using modern Java backend technologies following indu
 * IntelliJ IDEA / Eclipse
 * Git
 * GitHub
+* Scene Builder
+* MySQL Workbench
 
 ### Components
 
@@ -81,6 +83,14 @@ Stores clinic-related information such as patients, doctors, and appointments.
 ```bash
 cd ClinicManagementSystem
 ```
+
+## Database Connectivity
+
+* JDBC (Java Database Connectivity)
+
+## Architecture
+
+* Object-Oriented Programming (OOP)
 
 ## Future Enhancements
 
