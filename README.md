@@ -6,6 +6,18 @@ Clinic Management System is a backend-driven healthcare management application d
 
 This project was developed using modern Java backend technologies following industry-standard development practices to ensure maintainability, scalability, and security.
 
+## Project Highlights
+
+* Designed and developed a desktop-based Clinic Management System using JavaFX and MySQL.
+* Implemented a clean MVC architecture to separate business logic, user interface, and data access layers.
+* Developed secure database interactions using JDBC and parameterized queries.
+* Built an intuitive graphical user interface using JavaFX and Scene Builder.
+* Implemented patient, doctor, and appointment management modules.
+* Applied Object-Oriented Programming principles to ensure maintainability and scalability.
+* Structured the application with reusable components and modular design practices.
+* Utilized Git and GitHub for version control and project management.
+
+
 ## Key Features
 
 ### Patient Management
