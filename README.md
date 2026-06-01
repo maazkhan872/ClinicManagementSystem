@@ -78,6 +78,11 @@ Stores clinic-related information such as patients, doctors, and appointments.
 * MySQL Server
 * Git
 
+### User Interface
+* JavaFX FXML
+* Scene Builder
+* CSS Styling
+
 ### Navigate to Project
 
 ```bash
